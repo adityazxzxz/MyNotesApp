@@ -77,4 +77,31 @@ public class NoteHelper {
     public int delete(int id){
         return database.delete(TABLE_NOTE,_ID+" = '"+id+"'",null);
     }
+
+    public Cursor queryByIdProvider(String id){
+        return database.query(DATABASE_TABLE,null
+        ,_ID + " = ?"
+        ,new String[]{id}
+        ,null
+        ,null
+        ,null
+        ,null);
+    }
+
+    public Cursor queryProvider(){
+        return database.query(DATABASE_TABLE
+        ,null
+        ,null
+        ,null
+        ,null
+        ,_ID + " DESC");
+    }
+
+    public long insertProvider(ContentValues values){
+        return database.insert(DATABASE_TABLE,null,values);
+    }
+
+    public int updateProvider(String id,ContentValues values){
+        return database.update(DATABASE_TABLE,values,_ID + " = ?",new String[]{id});
+    }
 }
