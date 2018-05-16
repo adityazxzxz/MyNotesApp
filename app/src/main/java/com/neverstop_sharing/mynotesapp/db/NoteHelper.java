@@ -37,7 +37,7 @@ public class NoteHelper {
         databaseHelper.close();
     }
 
-    public ArrayList<Note>query(){
+    public ArrayList<Note> query(){
         ArrayList<Note> arrayList = new ArrayList<Note>();
         Cursor cursor = database.query(DATABASE_TABLE,null,null,null,null,null,_ID+" DESC",null);
         cursor.moveToFirst();
@@ -89,12 +89,7 @@ public class NoteHelper {
     }
 
     public Cursor queryProvider(){
-        return database.query(DATABASE_TABLE
-        ,null
-        ,null
-        ,null
-        ,null
-        ,_ID + " DESC");
+        return database.query(DATABASE_TABLE,null,null,null,null,null,_ID + " DESC");
     }
 
     public long insertProvider(ContentValues values){
@@ -103,5 +98,9 @@ public class NoteHelper {
 
     public int updateProvider(String id,ContentValues values){
         return database.update(DATABASE_TABLE,values,_ID + " = ?",new String[]{id});
+    }
+
+    public int deleteProvider(String id) {
+        return database.delete(DATABASE_TABLE,_ID + " = ?",new String[]{id});
     }
 }
